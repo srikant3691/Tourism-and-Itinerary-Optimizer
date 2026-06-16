@@ -1,4 +1,4 @@
-﻿import { runOptimizerPipeline } from '@/lib/optimizer/scheduler';
+import { runOptimizerPipeline } from '@/lib/optimizer/scheduler';
 import { query } from '@/lib/db';
 import { UserPreferences } from '@/lib/optimizer/types';
 
@@ -38,5 +38,9 @@ export const resolvers = {
         description: row.description,
       }));
     },
+  },
+  LocationGQL: {
+    avgTimeSpent: (parent: any) => parent.avg_time_spent ?? parent.avgTimeSpent,
+    costScore: (parent: any) => parent.cost_score ?? parent.costScore,
   },
 };

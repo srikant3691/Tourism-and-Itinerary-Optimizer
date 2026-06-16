@@ -1,0 +1,39 @@
+{
+  "name": "odisha-itinerary-optimizer",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint",
+    "db:migrate": "node -e \"require('dotenv').config({path:'.env.local'}); const {Pool}=require('pg'); const fs=require('fs'); const pool=new Pool({connectionString:process.env.DATABASE_URL,ssl:{rejectUnauthorized:false}}); pool.query(fs.readFileSync('lib/schema.sql','utf8')).then(()=>{ console.log('✅ Schema migrated'); pool.end(); }).catch(e=>{ console.error('❌',e.message); pool.end(); process.exit(1); });\"",
+    "db:seed": "node -e \"require('dotenv').config({path:'.env.local'}); const {Pool}=require('pg'); const fs=require('fs'); const pool=new Pool({connectionString:process.env.DATABASE_URL,ssl:{rejectUnauthorized:false}}); pool.query(fs.readFileSync('lib/seed.sql','utf8')).then(()=>{ console.log('✅ Seed data inserted'); pool.end(); }).catch(e=>{ console.error('❌',e.message); pool.end(); process.exit(1); });\""
+  },
+  "dependencies": {
+    "@apollo/server": "^5.5.1",
+    "@as-integrations/next": "^4.1.0",
+    "dotenv": "^17.4.2",
+    "graphql": "^16.14.2",
+    "graphql-tag": "^2.12.6",
+    "leaflet": "^1.9.4",
+    "lucide-react": "^1.18.0",
+    "next": "16.2.9",
+    "pg": "^8.21.0",
+    "react": "19.2.4",
+    "react-dom": "19.2.4",
+    "zod": "^4.4.3"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4",
+    "@types/leaflet": "^1.9.21",
+    "@types/node": "^20",
+    "@types/pg": "^8.20.0",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "eslint": "^9",
+    "eslint-config-next": "16.2.9",
+    "tailwindcss": "^4",
+    "typescript": "^5"
+  }
+}
